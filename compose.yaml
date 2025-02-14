@@ -1,0 +1,13 @@
+services:
+  app:
+    container_name: website-schema-extractor-microservice
+    build: .
+    ports:
+      - "3003:3000"
+    environment:
+      - PORT=3000
+      - NODE_ENV=production
+    cap_add:
+      - SYS_ADMIN  # Needed for Puppeteer sandboxing
+    init: true     # Ensures proper signal handling
+    restart: unless-stopped
